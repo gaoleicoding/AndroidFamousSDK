@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        //新添代码
-//       DaggerSampleComponent.builder()
-//                .sampleModule(new SampleModule(this))
-//                .build()
-//                .inject(this);
+        //新添代码
+        DaggerSampleComponent.builder()
+                .sampleModule(new SampleModule())
+                .build()
+                .inject(this);
     }
 
     @OnClick(R.id.btn_01)

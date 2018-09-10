@@ -5,6 +5,6 @@ import dagger.Component;
 @Component(modules = SampleModule.class)
 public interface SampleComponent {
 
-    void inject(SampleActivity activity);
+    void inject(MainActivity activity);
 
 }
