@@ -1,4 +1,4 @@
-package com.gaolei.dagger2;
+package com.gaolei.dagger_one;
 
 import dagger.Module;
 import dagger.Provides;
