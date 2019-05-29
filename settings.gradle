@@ -1,1 +1,1 @@
-include ':app', ':dagger2', ':greendao'
+include ':app', ':dagger2', ':greendao', ':rxbus'
