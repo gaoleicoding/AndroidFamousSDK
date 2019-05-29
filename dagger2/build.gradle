@@ -1,14 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
 
     defaultConfig {
         applicationId "com.gaolei.dagger2"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
         versionCode 1
         versionName "1.0"
 
@@ -27,14 +25,14 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26+'
+    implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     provided 'javax.annotation:javax.annotation-api:1.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile 'com.google.dagger:dagger:2.0.2'
+    implementation 'com.google.dagger:dagger:2.0.2'
     // if you use the support libraries
     annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
 

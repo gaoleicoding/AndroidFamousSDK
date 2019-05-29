@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
-
+//使用greendao
+apply plugin: 'org.greenrobot.greendao'
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
 
     defaultConfig {
         applicationId "com.gaolei.greendao"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
         versionCode 1
         versionName "1.0"
 
@@ -22,14 +21,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    greendao {
+        schemaVersion 1                         //数据库版本号，如果数据库需要升级，直接在此修改版本号即可
+        daoPackage 'com.gaolei.greendao.gen'      //dao包名，默认是entity所在的包
+        targetGenDir 'src/main/java'            //数据库文件的目录
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
+    implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'org.greenrobot:greendao:3.2.2'
 }
