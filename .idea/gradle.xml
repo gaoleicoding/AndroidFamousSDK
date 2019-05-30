@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/dagger2" />
             <option value="$PROJECT_DIR$/greendao" />
+            <option value="$PROJECT_DIR$/rxbus" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
