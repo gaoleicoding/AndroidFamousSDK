@@ -1,37 +1,42 @@
-package com.example.rxbus;
+package com.example.rxbus4;
 
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.example.rxbus.RxBusBaseMessage;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
+/**
+ * Created by hushendian on 2017/11/16.
+ */
 
-public class RxBus {
+public class RxBus4 {
 
-    private static volatile RxBus instance;
+    private static volatile RxBus4 instance;
 
-    private Subject<RxBusBaseMessage> bus;
+    private Subject<Object> bus;
 
-    public static RxBus getInstance() {
+    public static RxBus4 getInstance() {
         if (instance == null) {
-            synchronized (RxBus.class) {
+            synchronized (RxBus4.class) {
                 if (instance == null) {
-                    instance = new RxBus();
+                    instance = new RxBus4();
                 }
             }
         }
         return instance;
     }
 
-    public RxBus() {
-        bus = PublishSubject.<RxBusBaseMessage>create().toSerialized();
+    public RxBus4() {
+        bus = PublishSubject.create().toSerialized();
     }
 
+    public void send(Object o) {
+        bus.onNext(o);
+    }
 
     /**
      * 提供了一个新的事件,根据code进行分发
@@ -43,11 +48,14 @@ public class RxBus {
         bus.onNext(new RxBusBaseMessage(code, o));
     }
 
+    public Observable<Object> toObservable() {
+        return bus;
+    }
 
     /**
      * 根据传递的eventtype类型返回特定类型（eventype）的被观察者
      */
-    public Observable<RxBusBaseMessage> tObservable(Class<RxBusBaseMessage> EventType) {
+    public <T> Observable<T> tObservable(Class<T> EventType) {
         return bus.ofType(EventType);
     }
 
@@ -55,22 +63,20 @@ public class RxBus {
      *  * 根据传递的code和 eventType 类型返回特定类型(eventType)的 被观察者
      * 对于注册了code为0，class为voidMessage的观察者，那么就接收不到code为0之外的voidMessage。
      */
-    public Observable<RxBusBaseMessage> tObservable(final int code, final Class<RxBusBaseMessage> eventType, LifecycleTransformer<RxBusBaseMessage> tf) {
-        return bus.filter(new Predicate<RxBusBaseMessage>() {
+    public <T> Observable<T> tObservable(final int code, final Class<T> eventType) {
+        return bus.ofType(RxBusBaseMessage.class).filter(new Predicate<RxBusBaseMessage>() {
             @Override
             public boolean test(RxBusBaseMessage o) throws Exception {
 
                 return o.getCode() == code && eventType.isInstance(o.getObject());
 
             }
-        }).compose(tf)
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(new Function<RxBusBaseMessage, Object>() {
-                    @Override
-                    public Object apply(RxBusBaseMessage o) throws Exception {
-                        return o.getObject();
-                    }
-                }).cast(eventType);
+        }).map(new Function<RxBusBaseMessage, Object>() {
+            @Override
+            public Object apply(RxBusBaseMessage o) throws Exception {
+                return o.getObject();
+            }
+        }).cast(eventType);
 
     }
 

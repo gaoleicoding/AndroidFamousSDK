@@ -1,25 +1,23 @@
-package com.example.rxbus;
+package com.example.rxbus3;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.rxbus2.RxObject;
+import com.example.rxbus.R;
 
-public class SecondActivity extends AppCompatActivity {
+public class FourActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_four);
 
         findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getInstance().send(RxCodeConstants.JUMP_TYPE_TO_ONE, new RxBusBaseMessage(RxCodeConstants.JUMP_TYPE_TO_ONE, "From SecondActivity"));
-                finish();
-
+                RxBus3.getInstance().send(RxBusConstants.EVENT_ACTION_CAR_LOCATION, "From FourActivity");
             }
         });
 

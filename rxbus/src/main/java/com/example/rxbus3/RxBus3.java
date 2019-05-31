@@ -1,4 +1,4 @@
-package com.example.rxbus;
+package com.example.rxbus3;
 
 
 import com.trello.rxlifecycle2.LifecycleProvider;
