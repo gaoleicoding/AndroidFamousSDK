@@ -1,11 +1,19 @@
 package com.example.rxbus;
 
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.RxLifecycle;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -55,22 +63,8 @@ public class RxBus {
      *  * 根据传递的code和 eventType 类型返回特定类型(eventType)的 被观察者
      * 对于注册了code为0，class为voidMessage的观察者，那么就接收不到code为0之外的voidMessage。
      */
-    public Observable<RxBusBaseMessage> tObservable(final int code, final Class<RxBusBaseMessage> eventType, LifecycleTransformer<RxBusBaseMessage> tf) {
-        return bus.filter(new Predicate<RxBusBaseMessage>() {
-            @Override
-            public boolean test(RxBusBaseMessage o) throws Exception {
-
-                return o.getCode() == code && eventType.isInstance(o.getObject());
-
-            }
-        }).compose(tf)
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(new Function<RxBusBaseMessage, Object>() {
-                    @Override
-                    public Object apply(RxBusBaseMessage o) throws Exception {
-                        return o.getObject();
-                    }
-                }).cast(eventType);
+    public Observable<RxBusBaseMessage> toObservable() {
+        return bus;
 
     }
 
@@ -87,4 +81,81 @@ public class RxBus {
     public void unRegisterAll() {
         bus.onComplete();
     }
+
+  
+    private Consumer<? super RxBusBaseMessage> onNext;
+    public static class SubscriberBuilder {
+
+        private LifecycleProvider<ActivityEvent> mActivityLifecycleProvider;
+        private LifecycleProvider<FragmentEvent> mFragmentLifecycleProvider;
+        private FragmentEvent mFragmentEndEvent;
+        private ActivityEvent mActivityEndEvent;
+        private HashSet<Integer> mEventCodeSet = new HashSet<>();
+        private Consumer<? super RxBusBaseMessage> onNext;
+        private Consumer<Throwable> onError;
+
+        public SubscriberBuilder setActivityLifeCycleProvider(LifecycleProvider<ActivityEvent> provider) {
+            this.mActivityLifecycleProvider = provider;
+            return this;
+        }
+
+        public SubscriberBuilder setFragmentLifeCycleProvider(LifecycleProvider<FragmentEvent> provider) {
+            this.mFragmentLifecycleProvider = provider;
+            return this;
+        }
+
+        public SubscriberBuilder setEventCode(Integer eventCode) {
+            this.mEventCodeSet.add(eventCode);
+            return this;
+        }
+
+        public SubscriberBuilder setEventCodeArray(Integer[] eventCodeArray) {
+            this.mEventCodeSet.addAll(Arrays.asList(eventCodeArray));
+            return this;
+        }
+
+        public SubscriberBuilder setFragmentEndEvent(FragmentEvent endEvent) {
+            this.mFragmentEndEvent = endEvent;
+            return this;
+        }
+
+        public SubscriberBuilder setActivityEndEvent(ActivityEvent endEvent) {
+            this.mActivityEndEvent = endEvent;
+            return this;
+        }
+
+        public SubscriberBuilder onNext(Consumer<? super RxBusBaseMessage> action) {
+            this.onNext = action;
+            return this;
+        }
+
+        public SubscriberBuilder onError(Consumer<Throwable> action) {
+            this.onError = action;
+            return this;
+        }
+
+        public Disposable create() {
+            return RxBus.getInstance().toObservable()
+                    .compose(mActivityEndEvent != null ? RxLifecycle.<RxBusBaseMessage, ActivityEvent>bindUntilEvent(mActivityLifecycleProvider.lifecycle(), mActivityEndEvent)
+                            : RxLifecycleAndroid.<RxBusBaseMessage>bindActivity(mActivityLifecycleProvider.lifecycle()))
+                    .filter(new Predicate<RxBusBaseMessage>() {
+                        @Override
+                        public boolean test(RxBusBaseMessage rxEvent) throws Exception {
+                            return mEventCodeSet.contains(rxEvent.getCode());
+                        }
+                    })   //过滤 根据code判断返回事件
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(onNext, onError == null ? new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            throwable.printStackTrace();
+                        }
+                    } : onError);
+                    
+        }
+    }
+    public static SubscriberBuilder withActivity(LifecycleProvider<ActivityEvent> provider) {
+        return new SubscriberBuilder().setActivityLifeCycleProvider(provider);
+    }
+
 }

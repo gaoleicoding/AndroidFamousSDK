@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.rxbus3.RxBus3;
+import com.example.rxbus3.RxBusConstants;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -28,13 +30,10 @@ public class MainActivity extends RxAppCompatActivity {
             }
         });
 
-         RxBus.getInstance().tObservable(RxCodeConstants.JUMP_TYPE_TO_ONE, RxBusBaseMessage.class, this.bindToLifecycle())
-                .subscribe(new Consumer<RxBusBaseMessage>() {
-                    @Override
-                    public void accept(RxBusBaseMessage baseMessage) {
-                        content.setText((String) baseMessage.getObject());
-                    }
-                });
+        RxBus.withActivity(this)
+                .setEventCode(RxCodeConstants.JUMP_TYPE_TO_ONE)
+                .onNext(rxEvent -> content.setText((String) rxEvent.getObject())
+                ).create();
     }
 
     @Override

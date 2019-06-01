@@ -17,7 +17,7 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getInstance().send(RxCodeConstants.JUMP_TYPE_TO_ONE, new RxBusBaseMessage(RxCodeConstants.JUMP_TYPE_TO_ONE, "From SecondActivity"));
+                RxBus.getInstance().send(RxCodeConstants.JUMP_TYPE_TO_ONE,  "From SecondActivity");
                 finish();
 
             }
