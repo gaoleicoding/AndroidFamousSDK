@@ -46,6 +46,6 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation "com.blankj:rxbus:1.6"
-    implementation 'com.uber.autodispose:autodispose:0.6.1'
-    implementation 'com.uber.autodispose:autodispose-android-archcomponents:0.6.1'
+    implementation 'com.uber.autodispose:autodispose:0.8.0'
+    implementation 'com.uber.autodispose:autodispose-android-archcomponents:0.8.0'
 }
