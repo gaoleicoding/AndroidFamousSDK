@@ -1,8 +1,9 @@
 package com.gaolei.greendao;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gaolei.greendao.db.DBManager;
 import com.gaolei.greendao.db.SearchRecord;

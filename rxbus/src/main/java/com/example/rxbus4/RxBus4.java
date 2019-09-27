@@ -1,16 +1,14 @@
 package com.example.rxbus4;
 
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.rxbus.RxBusBaseMessage;
 import com.trello.rxlifecycle2.LifecycleProvider;
-import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
-import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 

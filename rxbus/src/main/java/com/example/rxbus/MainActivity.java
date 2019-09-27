@@ -1,18 +1,11 @@
 package com.example.rxbus;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.rxbus3.RxBus3;
-import com.example.rxbus3.RxBusConstants;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public class MainActivity extends RxAppCompatActivity {
 

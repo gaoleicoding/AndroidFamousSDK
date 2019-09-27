@@ -1,18 +1,13 @@
 package com.example.autodispose;
 
-import android.arch.lifecycle.Lifecycle;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+
 import com.example.rxbus.R;
-import com.example.rxbus.RxBus;
-import com.example.rxbus.RxCodeConstants;
-import com.example.rxbus.SecondActivity;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
