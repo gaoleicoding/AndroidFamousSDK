@@ -6,6 +6,8 @@ import com.androidfamousframe.BuildConfig;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class DemoApplication extends Application {
 
 
@@ -13,6 +15,8 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         BlockCanary.install(this, new AppContext()).start();
+        EventBus eventBus = EventBus.builder().addIndex(new MyEventBusIndex()).build();
+
     }
 
 

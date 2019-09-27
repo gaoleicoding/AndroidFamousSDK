@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:appComponentFactory">
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="whateverString"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".abc.SampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

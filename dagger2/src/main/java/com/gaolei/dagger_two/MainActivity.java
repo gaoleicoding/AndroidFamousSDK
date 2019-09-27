@@ -13,11 +13,11 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainComponent = DaggerMainComponent.builder()
-                .activityComponent(getActivityComponent())
-                .mainModule(new MainModule())
-                .build();
-        mainComponent.inject(this);
+//        mainComponent = DaggerMainComponent.builder()
+//                .activityComponent(getActivityComponent())
+//                .mainModule(new MainModule())
+//                .build();
+//        mainComponent.inject(this);
     }
 
     public MainComponent getMainComponent() {
