@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/greendao" />
             <option value="$PROJECT_DIR$/ormlite" />
             <option value="$PROJECT_DIR$/rxbus" />
+            <option value="$PROJECT_DIR$/rxjava" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

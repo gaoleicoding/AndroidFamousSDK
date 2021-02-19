@@ -1,1 +1,2 @@
+include ':rxjava'
 include ':app', ':dagger2', ':greendao', ':rxbus', ':ormlite'

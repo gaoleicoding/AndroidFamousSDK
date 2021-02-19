@@ -3,11 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidFamousFrame.iml" filepath="$PROJECT_DIR$/AndroidFamousFrame.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dagger2/dagger2.iml" filepath="$PROJECT_DIR$/dagger2/dagger2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/greendao/greendao.iml" filepath="$PROJECT_DIR$/greendao/greendao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ormlite/ormlite.iml" filepath="$PROJECT_DIR$/ormlite/ormlite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxbus/rxbus.iml" filepath="$PROJECT_DIR$/rxbus/rxbus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidFamousFrame.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidFamousFrame.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dagger2/AndroidFamousFrame.dagger2.iml" filepath="$PROJECT_DIR$/.idea/modules/dagger2/AndroidFamousFrame.dagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/greendao/AndroidFamousFrame.greendao.iml" filepath="$PROJECT_DIR$/.idea/modules/greendao/AndroidFamousFrame.greendao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ormlite/AndroidFamousFrame.ormlite.iml" filepath="$PROJECT_DIR$/.idea/modules/ormlite/AndroidFamousFrame.ormlite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rxbus/AndroidFamousFrame.rxbus.iml" filepath="$PROJECT_DIR$/.idea/modules/rxbus/AndroidFamousFrame.rxbus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rxjava/AndroidFamousFrame.rxjava.iml" filepath="$PROJECT_DIR$/.idea/modules/rxjava/AndroidFamousFrame.rxjava.iml" />
     </modules>
   </component>
 </project>
