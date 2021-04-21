@@ -1,2 +1,4 @@
+include ':glide'
+include ':eventbus'
 include ':rxjava'
 include ':app', ':dagger2', ':greendao', ':rxbus', ':ormlite'

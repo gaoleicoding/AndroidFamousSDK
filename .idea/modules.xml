@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidFamousFrame.iml" filepath="$PROJECT_DIR$/AndroidFamousFrame.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidFamousFrame.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidFamousFrame.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/dagger2/AndroidFamousFrame.dagger2.iml" filepath="$PROJECT_DIR$/.idea/modules/dagger2/AndroidFamousFrame.dagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eventbus/AndroidFamousFrame.eventbus.iml" filepath="$PROJECT_DIR$/.idea/modules/eventbus/AndroidFamousFrame.eventbus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/glide/AndroidFamousFrame.glide.iml" filepath="$PROJECT_DIR$/.idea/modules/glide/AndroidFamousFrame.glide.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/greendao/AndroidFamousFrame.greendao.iml" filepath="$PROJECT_DIR$/.idea/modules/greendao/AndroidFamousFrame.greendao.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ormlite/AndroidFamousFrame.ormlite.iml" filepath="$PROJECT_DIR$/.idea/modules/ormlite/AndroidFamousFrame.ormlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/rxbus/AndroidFamousFrame.rxbus.iml" filepath="$PROJECT_DIR$/.idea/modules/rxbus/AndroidFamousFrame.rxbus.iml" />
