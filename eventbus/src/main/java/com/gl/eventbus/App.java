@@ -2,8 +2,6 @@ package com.gl.eventbus;
 
 import android.app.Application;
 
-import com.androidfamousframe.abc.MyEventBusIndex;
-
 import org.greenrobot.eventbus.EventBus;
 
 public class App extends Application {
